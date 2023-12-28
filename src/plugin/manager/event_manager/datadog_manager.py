@@ -105,4 +105,4 @@ class DataDogManager(BaseManager):
 
     @staticmethod
     def make_description(description: str) -> str:
-        return description.replace("·", "\n")
+        return description.replace("·", "\n·")
