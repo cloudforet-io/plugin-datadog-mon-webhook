@@ -31,7 +31,7 @@ class DataDogManager(BaseManager):
             "account": "",
             "description": raw_data.get("description", ""),
             "occurred_at": self.get_occured_at(raw_data.get("occured_at", "")),
-            "additional_info": self.get_additional_info(raw_data)
+            "additional_info": self.get_additional_info(raw_data.get("additional_info", {}))
         }
         results.append(event)
         _LOGGER.debug(f"[DataDogManager] parse : {event}")
@@ -91,14 +91,14 @@ class DataDogManager(BaseManager):
             return utils.datetime_to_iso8601(datetime.utcfromtimestamp(int(occured_at)/1000))
 
     @staticmethod
-    def get_additional_info(raw_data: dict) -> dict:
+    def get_additional_info(additional_info: dict) -> dict:
         return {
-            "org_name": raw_data.get("org_name", ""),
-            "alert_id": raw_data.get("alert_id", ""),
-            "alert_priority": raw_data.get("alert_priority", ""),
-            "alert_transition": raw_data.get("alert_transition", ""),
-            "alert_scope": raw_data.get("alert_scope", ""),
-            "link": raw_data.get("link", ""),
-            "email": raw_data.get("email", ""),
-            "event_type": raw_data.get("event_type", "")
+            "org_name": additional_info.get("org_name", ""),
+            "alert_id": additional_info.get("alert_id", ""),
+            "alert_priority": additional_info.get("alert_priority", ""),
+            "alert_transition": additional_info.get("alert_transition", ""),
+            "alert_scope": additional_info.get("alert_scope", ""),
+            "link": additional_info.get("link", ""),
+            "email": additional_info.get("email", ""),
+            "event_type": additional_info.get("event_type", "")
         }
