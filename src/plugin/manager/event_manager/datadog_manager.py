@@ -1,8 +1,5 @@
 import logging
-import hashlib
 from datetime import datetime
-from typing import Union
-
 
 from spaceone.core.manager import BaseManager
 from spaceone.core import utils
@@ -88,10 +85,10 @@ class DataDogManager(BaseManager):
 
     @staticmethod
     def get_occured_at(occured_at: str) -> str:
-            if occured_at == "":
-                return utils.datetime_to_iso8601(datetime.utcnow())
-            else:
-                return utils.datetime_to_iso8601(datetime.utcfromtimestamp(int(occured_at)/1000))
+        if occured_at == "":
+            return utils.datetime_to_iso8601(datetime.utcnow())
+        else:
+            return utils.datetime_to_iso8601(datetime.utcfromtimestamp(int(occured_at)/1000))
 
     @staticmethod
     def get_additional_info(raw_data: dict) -> dict:
@@ -105,4 +102,3 @@ class DataDogManager(BaseManager):
             "email": raw_data.get("email", ""),
             "event_type": raw_data.get("event_type", "")
         }
-

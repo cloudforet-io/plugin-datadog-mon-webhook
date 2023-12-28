@@ -1,5 +1,4 @@
 import logging
-import json
 
 from spaceone.monitoring.plugin.webhook.lib.server import WebhookPluginServer
 from plugin.manager.event_manager.datadog_manager import DataDogManager
@@ -73,4 +72,4 @@ def event_parse(params: dict) -> dict:
 
     parse_mgr = DataDogManager()
 
-    return parse_mgr.parse(json.loads(data))
+    return parse_mgr.parse(data)
