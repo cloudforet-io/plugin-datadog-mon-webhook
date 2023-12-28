@@ -102,3 +102,7 @@ class DataDogManager(BaseManager):
             "email": additional_info.get("email", ""),
             "event_type": additional_info.get("event_type", "")
         }
+
+    @staticmethod
+    def make_description(description: str) -> str:
+        return description.replace("·", "\n")
