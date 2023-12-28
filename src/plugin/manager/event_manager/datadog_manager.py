@@ -29,7 +29,7 @@ class DataDogManager(BaseManager):
             "image_url": raw_data.get("image_url", ""),
             "resource": self.get_resource(raw_data.get("resource", {})),
             "account": "",
-            "description": raw_data.get("description", ""),
+            "description": self.make_description(raw_data.get("description", "")),
             "occurred_at": self.get_occured_at(raw_data.get("occured_at", "")),
             "additional_info": self.get_additional_info(raw_data.get("additional_info", {}))
         }
